@@ -1,0 +1,39 @@
+---
+title: "lab 29"
+output: html_document
+date: "2025-10-07"
+---
+##how to sum a variable by group in R
+
+primero cargar las paqueterias
+```{r}
+library(data.table)
+library(dplyr)
+
+```
+
+Abrir el archivo input para identificar su ruta
+choose.files()
+
+usar archivo de input para crear un data frame
+
+```{r}
+data2013 <-read.csv("C:\\Users\\arm_v\\Downloads\\greenR_2013.csv") 
+data2013 <- as.data.table(data2013)
+
+```
+
+Verificar que tipo de archivo es 
+class(data2013)
+
+Sumar columnas 
+```{r}
+resultados2013 <- data2013 %>% 
+  group_by(location_name) %>% 
+  summarise(suma_GCI_2013 = sum(GCI_2013, na.rm = T),
+            suma_GP_SINVCR = sum(GP_SINVCR, na.rm= T),
+            suma_GCP_2013 = sum(GCP_2013, na.rm= T),
+            count= n())
+
+```
+
